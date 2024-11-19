@@ -21,14 +21,16 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String nombre) throws UsernameNotFoundException {
+        // Buscar usuario por nombre
         Usuario user = userRepository.findByNombre(nombre)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no existe: " + nombre));
 
-        // Map roles through usuarioRoles relationship
-        Set<GrantedAuthority> authorities = user.getUsuarioRoles().stream()
-                .map(usuarioRol -> new SimpleGrantedAuthority(usuarioRol.getRol().getNombre()))
+        // Mapear roles directamente desde la relación @ManyToMany
+        Set<GrantedAuthority> authorities = user.getRoles().stream()
+                .map(rol -> new SimpleGrantedAuthority(rol.getNombre()))
                 .collect(Collectors.toSet());
 
+        // Crear y retornar el objeto UserDetails
         return new org.springframework.security.core.userdetails.User(
                 user.getNombre(),
                 user.getContraseña(),

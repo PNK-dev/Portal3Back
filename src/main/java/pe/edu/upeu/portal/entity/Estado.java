@@ -76,10 +76,6 @@ public class Estado {
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy = "estado")
     @JsonIgnore
     private Set<PlanCarrera> planCarreras ;
-	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy = "estado")
-    @JsonIgnore
-    private Set<Requisito_Encargado> requisitoEncargados ;
     
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy = "estado")
     @JsonIgnore

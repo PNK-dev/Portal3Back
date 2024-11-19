@@ -37,9 +37,6 @@ public class ProcesoPlanRequisito {
     @JoinColumn(name="procesos", nullable = false)
     private Proceso proceso;
 	@ManyToOne
-    @JoinColumn(name="requisito_encargados", nullable = false)
-    private Requisito_Encargado requisito_Encargado;
-	@ManyToOne
     @JoinColumn(name="plancarreras", nullable = false)
     private PlanCarrera planCarrera;
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy = "procesoPlanRequisito")
