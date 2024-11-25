@@ -28,7 +28,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "ppps")
+@Table(name = "ppp")
 public class PPP {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

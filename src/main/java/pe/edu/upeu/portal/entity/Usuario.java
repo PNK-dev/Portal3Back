@@ -1,15 +1,15 @@
 package pe.edu.upeu.portal.entity;
 
-import java.util.Set;
-
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuario")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,11 +26,6 @@ public class Usuario {
     @JoinColumn(name = "personas", nullable = false)
     private Persona persona;
 
-    @ManyToMany
-    @JoinTable(
-        name = "usuario_roles",
-        joinColumns = @JoinColumn(name = "idusuario"),
-        inverseJoinColumns = @JoinColumn(name = "idrol")
-    )
-    private Set<Rol> roles;
+    @OneToMany(mappedBy = "usuario")
+    private Set<UsuarioRol> usuarioRoles;
 }

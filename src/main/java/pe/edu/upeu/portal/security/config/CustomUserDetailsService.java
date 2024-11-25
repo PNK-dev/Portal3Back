@@ -25,9 +25,9 @@ public class CustomUserDetailsService implements UserDetailsService {
         Usuario user = userRepository.findByNombre(nombre)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no existe: " + nombre));
 
-        // Mapear roles directamente desde la relación @ManyToMany
-        Set<GrantedAuthority> authorities = user.getRoles().stream()
-                .map(rol -> new SimpleGrantedAuthority(rol.getNombre()))
+        // Mapear roles a partir de la relación UsuarioRol
+        Set<GrantedAuthority> authorities = user.getUsuarioRoles().stream()
+                .map(usuarioRol -> new SimpleGrantedAuthority(usuarioRol.getRol().getNombre()))
                 .collect(Collectors.toSet());
 
         // Crear y retornar el objeto UserDetails
