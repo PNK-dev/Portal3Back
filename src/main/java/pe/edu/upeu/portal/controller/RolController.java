@@ -21,7 +21,7 @@ import pe.edu.upeu.portal.entity.Rol;
 import pe.edu.upeu.portal.service.RolService;
 
 @RestController
-@RequestMapping("/api/rol/")
+@RequestMapping("api/rol")
 @CrossOrigin(origins = "http://localhost:4200")
 public class RolController {
 
